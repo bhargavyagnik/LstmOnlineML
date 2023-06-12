@@ -628,9 +628,9 @@ void lstm_forward_propagate(lstm_model_t* model, double *input,
 
   // probs = softmax ( Wy*h + by )
   fully_connected_forward(cache_out->probs, model->Wy, cache_out->h, model->by, Y, N);
-  if ( softmax > 0 ) {
-    softmax_layers_forward(cache_out->probs, cache_out->probs, Y, model->params->softmax_temp);
-  } 
+//  if ( softmax > 0 ) {
+//    softmax_layers_forward(cache_out->probs, cache_out->probs, Y, model->params->softmax_temp);
+//  }
 #ifdef INTERLAYER_SIGMOID_ACTIVATION
   if ( softmax <= 0 ) {
     sigmoid_forward(cache_out->probs, cache_out->probs, Y);
@@ -1432,7 +1432,6 @@ void lstm_output_string_layers(lstm_model_t ** model_layers, set_t* char_index_m
     input = set_probability_choice(char_index_mapping, 
     caches_layer[p][(i+1)%2]->probs);
     printf ( "%c", input );
-
     ++i;
   }
 
@@ -1762,7 +1761,6 @@ void lstm_train(lstm_model_t** model_layers, lstm_model_parameters_t *params,
       e2 = q + 1;
 
       e3 = i % training_points;
-
       tmp_count = 0;
       while ( tmp_count < model_layers[0]->Y ) {
         first_layer_input[tmp_count] = 0.0; 
@@ -1791,7 +1789,7 @@ void lstm_train(lstm_model_t** model_layers, lstm_model_parameters_t *params,
         }
         p = 0;
       }
-
+    printf("Y_Train: %f",Y_train[e3]);
       loss_tmp += cross_entropy(cache_layers[p][e2]->probs, Y_train[e3]);
       ++i; ++q;
     }

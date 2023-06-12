@@ -1,0 +1,7 @@
+# ninja log v5
+1	969	7075399354671917	CMakeFiles/net.dir/layers.c.obj	b02ac5e000add8df
+158	1250	7075399357643480	CMakeFiles/net.dir/main.c.obj	ffc481d104e91093
+549	1551	7075399360671070	CMakeFiles/net.dir/set.c.obj	25b43d28d8ecaa6c
+347	1719	7075399362310618	CMakeFiles/net.dir/lstm.c.obj	3fa28a17cae99bdf
+742	1809	7075399363253484	CMakeFiles/net.dir/utilities.c.obj	69e2d8704ce5b9cd
+1810	3005	7075399374631673	net.exe	7122a2695fa2f627

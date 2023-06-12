@@ -179,10 +179,10 @@ static char * prettyPrintBytes(size_t bytes)
 
 int main(int argc, char *argv[])
 {
-  int c;
+  float c;
   unsigned int p = 0;
   unsigned int file_size = 0, sz = 0;
-  int *X_train, *Y_train;
+  float *X_train, *Y_train;
   FILE * fp;
 
   memset(&params, 0, sizeof(params));
@@ -238,8 +238,8 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  while ( ( c = fgetc(fp) ) != EOF ) {
-    set_insert_symbol(&set, (char)c );
+  while ( fscanf(fp, "%f", &c) != EOF) {
+    set_insert_symbol(&set, c );
     ++file_size;
   }
 
@@ -254,7 +254,7 @@ int main(int argc, char *argv[])
   Y_train = &X_train[1];
 
   fp = fopen(argv[1], "r");
-  while ( ( c = fgetc(fp) ) != EOF ) 
+  while ( fscanf(fp, "%f", &c) != EOF )
     X_train[sz++] = set_char_to_indx(&set,c);
   fclose(fp);
 
@@ -277,9 +277,10 @@ int main(int argc, char *argv[])
         printf("Could not open file: %s\n", argv[1]);
         return -1;
       }
+        ;
 
-      while ( ( c = fgetc(fp) ) != EOF ) {
-        set_insert_symbol(&set, (char)c );
+        while ( fscanf(fp, "%f", &c) != EOF ) {
+        set_insert_symbol(&set, c );
       }
 
       fclose(fp);

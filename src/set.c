@@ -27,19 +27,30 @@ initialize_set(set_t * set)
 {
   int i = 0;
   while ( i < SET_MAX_CHARS ) {
-    set->values[i] = '\0';
+    set->values[i] = 0.0;
     set->free[i] = 1;
     ++i;
   }
 }
 
+float min_max_scaler(float num){
+    return num-MIN_WL / MAX_WL - MIN_WL;
+}
+
+float min_max_inv_scaler(float num){
+    return (num *( MAX_WL - MIN_WL )) + MIN_WL;
+}
+
+
+
 int
-set_insert_symbol(set_t * set, char c)
+set_insert_symbol(set_t * set, float c)
 {
+//  c = min_max_scaler(c);
   int i = 0;
   while ( i <  SET_MAX_CHARS ) {
-    if ( (char) set->values[i] == c && set->free[i] == 0 )
-      return i;
+//    if (  set->values[i] == c && set->free[i] == 0 )
+//      return i;
     if ( set->free[i] ) {
       set->values[i] = c;
       set->free[i] = 0;
@@ -50,22 +61,25 @@ set_insert_symbol(set_t * set, char c)
   return -1;
 }
 
-char 
+float
 set_indx_to_char(set_t* set, int indx)
 {
   if ( indx >= SET_MAX_CHARS ) {
-    return '\0';
+      return 0.0;
+//    return min_max_inv_scaler(0.0);
   }
-  return (char) set->values[indx];
+  return (float) set->values[indx];
+//  return min_max_inv_scaler((float) set->values[indx]);
 }
 
-int 
-set_char_to_indx(set_t* set, char c) 
+float
+set_char_to_indx(set_t* set, float c)
 {
   int i = 0;
+//c = min_max_scaler(c);
   while ( i <  SET_MAX_CHARS ) {
-    if ( set->values[i] == (int) c && set->free[i] == 0 )
-      return i;
+    if ( set->values[i] == c && set->free[i] == 0 )
+      return c;
     ++i;
   }
 

@@ -37,15 +37,19 @@
 #include <inttypes.h>
 
 #define	SET_MAX_CHARS	1000
+#define MAX_WL 25
+#define MIN_WL 15
 
 typedef struct set_t {
-  char values[SET_MAX_CHARS];
+  float values[SET_MAX_CHARS];
   int free[SET_MAX_CHARS];
 } set_t;
 
-int set_insert_symbol(set_t*, char);
-char set_indx_to_char(set_t*, int);
-int set_char_to_indx(set_t*, char);
+int set_insert_symbol(set_t*, float);
+float min_max_scaler(float);
+float min_max_inv_scaler(float);
+float set_indx_to_char(set_t*, int);
+float set_char_to_indx(set_t*, float);
 int set_probability_choice(set_t*, double*);
 int set_greedy_argmax(set_t*, double*);
 int set_get_features(set_t*);

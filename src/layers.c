@@ -93,7 +93,8 @@ void  fully_connected_backward(double* dldY, double* A, double* X,double* dldA,
 
 double cross_entropy(double* probabilities, int correct)
 {
-  return -log(probabilities[correct]);  
+//    return probabilities[correct]-*correct;
+  return -log(probabilities[correct]);
 }
 
 // Dealing with softmax layer, forward and backward
