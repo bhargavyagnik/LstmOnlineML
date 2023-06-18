@@ -242,7 +242,7 @@ int main(int argc, char *argv[])
     set_insert_symbol(&set, c );
     ++file_size;
   }
-
+    printf("%d",file_size);
   fclose(fp);
 
   X_train = calloc(file_size+1, sizeof(int));

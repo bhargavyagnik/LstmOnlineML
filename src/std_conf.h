@@ -32,7 +32,7 @@
 #ifndef STD_CONF_H
 #define STD_CONF_H
 
-#define NEURONS                                                 7
+#define NEURONS                                                 1
 
 #define STD_LEARNING_RATE                                       0.001
 #define STD_MOMENTUM                                            0.0
@@ -42,7 +42,7 @@
 #define MINI_BATCH_SIZE                                         100
 #define LOSS_MOVING_AVG                                         0.01
 
-#define LAYERS                                                  3 // Has a tremendous impact on avaiable memory
+#define LAYERS                                                  2 // Has a tremendous impact on avaiable memory
 
 #define STATEFUL                                                1
 
