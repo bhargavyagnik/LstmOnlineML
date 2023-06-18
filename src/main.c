@@ -245,7 +245,7 @@ int main(int argc, char *argv[])
     printf("%d",file_size);
   fclose(fp);
 
-  X_train = calloc(file_size+1, sizeof(int));
+  X_train = calloc(file_size+1, sizeof(float));
   if ( X_train == NULL )
     return -1;
 

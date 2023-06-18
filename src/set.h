@@ -36,7 +36,7 @@
 #include <math.h>
 #include <inttypes.h>
 
-#define	SET_MAX_CHARS	1000
+#define	SET_MAX_CHARS	32000
 #define MAX_WL 25
 #define MIN_WL 15
 

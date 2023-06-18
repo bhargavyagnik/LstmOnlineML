@@ -112,10 +112,10 @@ set_get_features(set_t* set)
   int i = 0;
   while ( set->free[i] == 0 )
     i++;
-  if ( i < SET_MAX_CHARS )
-    return i;
+//  if ( i < SET_MAX_CHARS )
+//    return i;
 
-  return 0;
+  return i;
 }
 
 void 

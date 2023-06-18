@@ -1361,7 +1361,7 @@ void lstm_output_string_layers(lstm_model_t ** model_layers, set_t* char_index_m
 {
   lstm_values_cache_t ***caches_layer;
   int i = 0, count, index, p = 0, b = 0;
-  int input = set_indx_to_char(char_index_mapping, first);
+  float input = set_indx_to_char(char_index_mapping, first);
   int Y = model_layers[0]->Y;
   int N = model_layers[0]->N;
 #ifdef WINDOWS
@@ -1613,7 +1613,7 @@ void lstm_model_regularization(lstm_model_t* model, lstm_model_t* gradients)
 //						model, number of training points, X_train, Y_train
 void lstm_train(lstm_model_t** model_layers, lstm_model_parameters_t *params,
   set_t* char_index_mapping, unsigned int training_points,
-  int* X_train, int* Y_train, unsigned int layers, double *loss_out)
+  float* X_train, float * Y_train, unsigned int layers, double *loss_out)
 {
   unsigned int p, i = 0, b = 0, q = 0, e1 = 0, e2 = 0,
     e3, record_iteration = 0, tmp_count, trailing;
@@ -1767,7 +1767,7 @@ void lstm_train(lstm_model_t** model_layers, lstm_model_parameters_t *params,
         ++tmp_count;
       }
 
-      first_layer_input[X_train[e3]] = 1.0;
+      first_layer_input[e3] = 1.0;
 
       /* Layer numbering starts at the output point of the net */
       p = layers - 1;
@@ -1789,7 +1789,6 @@ void lstm_train(lstm_model_t** model_layers, lstm_model_parameters_t *params,
         }
         p = 0;
       }
-    printf("Y_Train: %f",Y_train[e3]);
       loss_tmp += cross_entropy(cache_layers[p][e2]->probs, Y_train[e3]);
       ++i; ++q;
     }
@@ -1927,7 +1926,7 @@ void lstm_train(lstm_model_t** model_layers, lstm_model_parameters_t *params,
 
       if ( print_progress_sample_output ) {
         printf("=====================================================\n");
-        lstm_output_string_layers(model_layers, char_index_mapping, X_train[b],
+        lstm_output_string_layers(model_layers, char_index_mapping, b,
           print_progress_number_of_chars, layers);
         printf("\n=====================================================\n");
       }

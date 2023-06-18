@@ -286,7 +286,7 @@ output collected at model[0].
 moving average filter, after the training has been completed.
 */ 
 void lstm_train(lstm_model_t** model, lstm_model_parameters_t*params,
-  set_t* set, unsigned int training_points, int *X, int *Y, unsigned int layers,
+  set_t* set, unsigned int training_points, float *X, float *Y, unsigned int layers,
   double *loss);
 /**
 * If you are training on textual data, this function can be used 
